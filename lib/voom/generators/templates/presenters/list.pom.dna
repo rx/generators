@@ -1,0 +1,29 @@
+require_relative '../resource'
+r = Resource.new
+
+.Voom::Presenters.define(:@{r.lcase.resource}_list) do
+.  helpers @{r.component}::Helpers::@{r.plural.resource}
+.
+.  list lines_only: !@{r.plural.lcase.resource}.first_page? do
+.    !@{r.plural.lcase.resource}.each do |!@{r.lcase.resource}|
+.      line do
+.        text @{r.lcase.resource}.name
+.        avatar :person
+.        info format_date_short(@{r.lcase.resource}.created_at)
+.        subtitle "Id: #{@{r.lcase.resource}.id}"
+.        event :click do
+.          loads :@{r.lcase.resource}, @{r.lcase.resource}_id: @{r.lcase.resource}.id
+.        end
+.      end
+.    end
+.    unless @{r.plural.lcase.resource}.last_page?
+.      content id: :more do
+.        button 'Load More' do
+.          event :click do
+.            replaces :more, :@{r.lcase.resource}_list, page: @{r.plural.lcase.resource}.current_page+1
+.          end
+.        end
+.      end
+.    end
+.  end
+.end

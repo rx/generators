@@ -1,0 +1,17 @@
+require_relative 'resource'
+r = Resource.new
+
+r.modules.each do |m|
+.module @{m}
+end
+.  class Add@{r.plural.resource} < ActiveRecord::Migration
+.    def change
+.      create_table :@{r.plural.lcase.resource} do |t|
+.        t.string :name, null: false
+.        t.timestamps null: false
+.      end
+.    end
+.  end
+r.modules.each do
+.end
+end

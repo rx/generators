@@ -1,0 +1,20 @@
+require_relative '../resource'
+r = Resource.new
+
+.Voom::Presenters.define(:edit_@{r.lcase.resource}_dialog) do
+.  helpers @{r.component}::Helpers::@{r.plural.resource}
+.
+.  dialog id: :edit_@{r.lcase.resource}_dialog do
+.    title "Edit @{r.humanize.resource} #{@{r.lcase.resource}.name}"
+.    form do
+.       identity_fields(@{r.lcase.resource})
+.       button 'Cancel'
+.       button 'Save' do
+.         event :click do
+.           updates @{r.lcase.resource}_path(@{r.lcase.resource})
+.           replaces :@{r.lcase.resource}, :@{r.lcase.resource}_card, @{r.lcase.resource}_id: @{r.lcase.resource}.id
+.         end
+.       end
+.    end
+.  end
+.end

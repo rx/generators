@@ -1,0 +1,23 @@
+require_relative '../resource'
+r = Resource.new
+
+.Voom::Presenters.define(:@{r.plural.lcase.resource}) do
+.  helpers @{r.component}::Helpers::@{r.plural.resource}
+.
+.  while_logged_in do
+.    # attach '@{r.lcase.component}-nav'
+.    grid id: :@{r.plural.lcase.resource} do
+.      column size: 3
+.      column size: 6, tablet: 8 do
+.        button icon: :add, type: :fab do
+.          event :click do
+.            dialog :add_@{r.lcase.resource}_dialog
+.          end
+.        end
+.        headline '@{r.plural.resource}'
+.        attach :@{r.lcase.resource}_list
+.      end
+.    end
+.    attach :add_@{r.lcase.resource}_dialog
+.  end
+.end

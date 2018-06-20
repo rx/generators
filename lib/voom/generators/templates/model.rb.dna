@@ -1,0 +1,11 @@
+require_relative 'resource'
+r = Resource.new
+.
+r.modules.each do |m|
+.module @{m}
+end
+.  class @{r.resource}  < ActiveRecord::Base
+.  end
+r.modules.each do
+.end
+end

@@ -1,0 +1,32 @@
+require_relative 'resource'
+r = Resource.new
+
+.require 'commands/controller_response'
+.
+r.modules.each do |m|
+.module @{m}
+end
+.  class @{r.plural.resource}Controller < ApplicationController
+.    skip_load_and_authorize_resource
+.
+.    def create
+.      response = @{r.command}::Create.call(**(params.deep_symbolize_keys))
+.      handle_response(response)
+.    end
+.
+.    def update
+.      response = @{r.command}::Update.call(**(params.deep_symbolize_keys))
+.      handle_response(response)
+.    end
+.
+.    def destroy
+.      response = @{r.command}::Delete.call(**(params.deep_symbolize_keys))
+.      handle_response(response)
+.    end
+.
+.    private
+.    include ::Commands::ControllerResponse
+.  end
+r.modules.each do
+.end
+end

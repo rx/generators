@@ -1,0 +1,22 @@
+require_relative 'resource'
+r = Resource.new
+
+r.modules.each do |m|
+.module @{m}
+end
+.  module Queries
+.    class @{r.plural.resource}
+.      def self.all(filter:nil, sort: :created_at, page: 1)
+.        scope = @{r.resource}.order(sort)
+.        scope = scope.page(page) unless page==:no_paging
+.        scope.where(filter)
+.      end
+.
+.      def self.find(id:)
+.        @{r.resource}.find_by!(id: id)
+.      end
+.    end
+.  end
+r.modules.each do
+.end
+end

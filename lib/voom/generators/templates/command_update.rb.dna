@@ -1,0 +1,43 @@
+require_relative 'resource'
+r = Resource.new
+
+.require 'commands/base'
+.require 'commands/validate_params'
+
+r.modules.each do |m|
+.module @{m}
+end
+.  module Commands
+.    module @{r.plural.resource}
+.      class Update < ::Commands::Base
+.        attr_accessor :params
+.        private :params
+.
+.        def initialize(**params)
+.          @params = validate_params(**params)
+.        end
+.
+.        def call
+.          ActiveRecord::Base.transaction { success(data: update_@{r.lcase.resource}) }
+.        end
+.
+.        private
+.        include ::Commands::ValidateParams
+.
+.        def update_@{r.lcase.resource}
+.          @{r.lcase.resource} = ::@{r.component}::@{r.resource}.find_by!(id: params[:id])
+.          @{r.lcase.resource}.update!(params)
+.          @{r.lcase.resource}
+.        end
+.
+.        def schema
+.          Dry::Validation.Form do
+.            required(:id).filled(:int?)
+.          end
+.        end
+.      end
+.    end
+.  end
+r.modules.each do
+.end
+end

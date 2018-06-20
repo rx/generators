@@ -1,0 +1,18 @@
+Voom::Presenters.define(:add_micah_dialog) do
+  helpers AAA::Helpers::Micahs
+
+  dialog id: :add_micah_dialog do
+      title "Add Micah"
+      form do
+        micah_fields
+
+        button 'Cancel'
+        button 'Add' do
+          event :click do
+            creates micahs_path, redirect: presenters_path(:micah), pluck:[:id]
+          end
+        end
+
+      end
+  end
+end

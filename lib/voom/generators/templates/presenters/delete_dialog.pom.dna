@@ -1,0 +1,18 @@
+require_relative '../resource'
+r = Resource.new
+
+.Voom::Presenters.define(:delete_@{r.lcase.resource}_dialog) do
+.  helpers @{r.component}::Helpers::@{r.plural.resource}
+.
+.  dialog id: :delete_@{r.lcase.resource}_dialog do
+.    title "Delete @{r.humanize.resource} #{@{r.lcase.resource}.name}?"
+.    body "This is **permanent**."
+.
+.    button 'Cancel'
+.    button "Yes I'm Sure" do
+.      event :click do
+.        deletes @{r.lcase.resource}_path(@{r.lcase.resource}), redirect: presenters_path(:@{r.plural.lcase.resource})
+.      end
+.    end
+.  end
+.end

@@ -1,0 +1,21 @@
+require_relative '../resource'
+r = Resource.new
+
+.Voom::Presenters.define(:add_@{r.lcase.resource}_dialog) do
+.  helpers @{r.component}::Helpers::@{r.plural.resource}
+.
+.  dialog id: :add_@{r.lcase.resource}_dialog do
+.      title "Add @{r.humanize.resource}"
+.      form do
+.        @{r.lcase.resource}_fields
+.
+.        button 'Cancel'
+.        button 'Add' do
+.          event :click do
+.            creates @{r.plural.lcase.resource}_path, redirect: presenters_path(:@{r.lcase.resource}), pluck:[:id]
+.          end
+.        end
+.
+.      end
+.  end
+.end

@@ -1,0 +1,37 @@
+Voom::Presenters.define(:micah_card) do
+  helpers AAA::Helpers::Micahs
+
+  helpers do
+    def micah_details
+      ["Created: #{format_date_short(micah.created_at)}"]
+    end
+  end
+
+  content id: :micah_card do
+    card do
+      media do
+        avatar :person, position: :left
+        title micah.name
+        button icon: :more_vert do
+          menu do
+            item 'Delete', icon: :delete do
+              event :click do
+                dialog :delete_micah_dialog
+              end
+            end
+          end
+        end
+      end
+      text micah_details
+      actions do
+        button 'Edit', icon: :mode_edit do
+          event :click do
+            dialog :edit_micah_dialog
+          end
+        end
+      end
+    end
+    attach :edit_micah_dialog
+    attach :delete_micah_dialog
+  end
+end

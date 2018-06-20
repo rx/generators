@@ -1,0 +1,20 @@
+Voom::Presenters.define(:micahs) do
+  helpers AAA::Helpers::Micahs
+
+  while_logged_in do
+    # attach 'aaa-nav'
+    grid id: :micahs do
+      column size: 3
+      column size: 6, tablet: 8 do
+        button icon: :add, type: :fab do
+          event :click do
+            dialog :add_micah_dialog
+          end
+        end
+        headline 'Micahs'
+        attach :micah_list
+      end
+    end
+    attach :add_micah_dialog
+  end
+end

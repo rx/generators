@@ -1,0 +1,36 @@
+require_relative 'resource'
+r = Resource.new
+.
+r.modules.each do |m|
+.module @{m}
+end
+.  module Helpers
+.    module @{r.plural.resource}
+.      def @{r.lcase.resource}_id
+.        context.fetch('@{r.lcase.resource}_id'){context.fetch('id'){
+.          raise_parameter_validation 'No @{r.lcase.resource} provided!'
+.        }}
+.      end
+.
+.      def @{r.lcase.resource}
+.        @@{r.lcase.resource} ||= @{r.query}.find(id: @{r.lcase.resource}_id)
+.      end
+.
+.      def @{r.plural.lcase.resource}(filter: nil, sort: [created_at: :desc], page: context[:page]||1)
+.        @{r.query}.all(filter: filter, sort: sort, page: page)
+.      end
+.
+.      def @{r.lcase.resource}_fields(@{r.lcase.resource}=nil)
+.        hidden_field name: :id do
+.          value @{r.lcase.resource}.id
+.        end if @{r.lcase.resource}
+.        text_field name: :name do
+.          label 'Name'
+.          value @{r.lcase.resource}.name if @{r.lcase.resource}
+.        end
+.      end
+.    end
+.  end
+r.modules.each do
+.end
+end

@@ -1,0 +1,40 @@
+require_relative '../resource'
+r = Resource.new
+
+.Voom::Presenters.define(:@{r.lcase.resource}_card) do
+.  helpers @{r.component}::Helpers::@{r.plural.resource}
+.
+.  helpers do
+.    def @{r.lcase.resource}_details
+.      ["Created: #{format_date_short(@{r.lcase.resource}.created_at)}"]
+.    end
+.  end
+.
+.  content id: :@{r.lcase.resource}_card do
+.    card do
+.      media do
+.        avatar :person, position: :left
+.        title @{r.lcase.resource}.name
+.        button icon: :more_vert do
+.          menu do
+.            item 'Delete', icon: :delete do
+.              event :click do
+.                dialog :delete_@{r.lcase.resource}_dialog
+.              end
+.            end
+.          end
+.        end
+.      end
+.      text @{r.lcase.resource}_details
+.      actions do
+.        button 'Edit', icon: :mode_edit do
+.          event :click do
+.            dialog :edit_@{r.lcase.resource}_dialog
+.          end
+.        end
+.      end
+.    end
+.    attach :edit_@{r.lcase.resource}_dialog
+.    attach :delete_@{r.lcase.resource}_dialog
+.  end
+.end
